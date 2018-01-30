@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/js/index.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -9,7 +9,7 @@ module.exports = {
   module: {
       rules: [
           { 
-              test: /\.jsx?$/, 
+              test: /\.js$/, 
               loader: 'babel-loader', 
               exclude: /node_modules/ 
           },
@@ -21,5 +21,6 @@ module.exports = {
   },
   devServer: {
       contentBase: path.resolve(__dirname, "dist")
-  }
+  },
+  devtool: 'source-map'
 };
