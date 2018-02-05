@@ -1,14 +1,22 @@
 const todos = (state = [], action) => {
     switch (action.type) {
       case 'ADD_TODO':
-        return [
+      if (validateForm(action)){
+         return [
           ...state,
           {
             id: action.id,
             text: action.text,
-            completed: false
+            completed: false,
+            priority: parseInt(action.priority)
           }
         ]
+      } else {
+         return [
+         ...state
+         ]
+      }
+       
       case 'TOGGLE_TODO':
         return state.map(todo =>
           (todo.id === action.id) 
@@ -20,4 +28,6 @@ const todos = (state = [], action) => {
     }
   }
   
+const validateForm = (action) => {return Boolean(parseInt(action.priority))}
+
   export default todos
